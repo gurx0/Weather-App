@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,7 +21,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -65,52 +65,53 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
         Screen.Search,
         Screen.Map
     )
+    Box(modifier = Modifier.padding(8.dp)){
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Transparent)
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            screens.forEach { screen ->
+                val isSelected = currentRoute == screen.route
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.Transparent)
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        screens.forEach { screen ->
-            val isSelected = currentRoute == screen.route
-
-            Card(
-                modifier = Modifier
-                    .height(48.dp)
-                    .width(56.dp),
-                onClick = {
-                    navController.navigate(screen.route) {
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
-                },
-                shape = RoundedCornerShape(8.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = if (isSelected) PrimaryDefault else Color.Transparent
-                ),
-            ) {
-                Column(
+                Card(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(5.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                        .height(40.dp)
+                        .width(56.dp),
+                    onClick = {
+                        navController.navigate(screen.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    },
+                    shape = RoundedCornerShape(8.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = if (isSelected) PrimaryDefault else Color.Transparent
+                    ),
                 ) {
-                    Icon(
-                        imageVector = screen.icon,
-                        contentDescription = screen.route,
-                        modifier = Modifier.size(24.dp),
-                        tint = if (isSelected) Color.White else TextDark
-                    )
-                    Text(
-                        text = screen.route,
-                        color = if (isSelected) Color.White else TextDark
-                    )
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(5.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Icon(
+                            imageVector = screen.icon,
+                            contentDescription = screen.route,
+                            modifier = Modifier.size(24.dp),
+                            tint = if (isSelected) Color.White else TextDark
+                        )
+//                        Text(
+//                            text = screen.route,
+//                            color = if (isSelected) Color.White else TextDark
+//                        )
+                    }
                 }
             }
         }
