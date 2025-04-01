@@ -38,8 +38,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.Composable.Screens.DetailsScreen
 import com.example.myapplication.Composable.Screens.MainScreen
-import com.example.myapplication.Composable.Screens.MapScreen
 import com.example.myapplication.Composable.Screens.SearchScreen
+import com.example.myapplication.Screens.MapScreen
 import com.example.myapplication.VM.DetailsViewModel
 import com.example.myapplication.VM.MainViewModel
 import com.example.myapplication.VM.SearchViewModel
