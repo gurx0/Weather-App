@@ -9,6 +9,17 @@ data class WeatherResponse(
     @SerializedName("name") val cityName: String
 )
 
+data class WeatherForecastResponce(
+    val list: List<ForecastItem>
+)
+
+data class ForecastItem(
+    val dt: Long,              // Время в Unix
+    val main: MainInfo,
+    val weather: List<WeatherInfo>,
+    val dt_txt: String         // Дата и время в текстовом формате
+)
+
 data class MainInfo(
     @SerializedName("temp") val temperature: Float,
     @SerializedName("humidity") val humidity: Int
