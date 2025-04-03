@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -61,7 +62,7 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
         Screen.Search,
         Screen.Map
     )
-    Box(modifier = Modifier.padding(8.dp)){
+    Box(modifier = Modifier.padding(8.dp)) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -74,8 +75,10 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
 
                 Card(
                     modifier = Modifier
-                        .height(40.dp)
-                        .width(56.dp),
+                        .height(48.dp)
+                        .width(64.dp)
+                        .background(Color.White.copy(alpha = 0.2f),shape = RoundedCornerShape(8.dp))
+                        .border(2.dp, Color.White, RoundedCornerShape(8.dp)),
                     onClick = {
                         navController.navigate(screen.route) {
                             popUpTo(navController.graph.findStartDestination().id) {
@@ -100,13 +103,9 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
                         Icon(
                             imageVector = screen.icon,
                             contentDescription = screen.route,
-                            modifier = Modifier.size(24.dp),
+                            modifier = Modifier.size(28.dp),
                             tint = if (isSelected) Color.White else TextDark
                         )
-//                        Text(
-//                            text = screen.route,
-//                            color = if (isSelected) Color.White else TextDark
-//                        )
                     }
                 }
             }
@@ -139,4 +138,3 @@ fun Navigation(navController: NavHostController) {
         }
     }
 }
-
