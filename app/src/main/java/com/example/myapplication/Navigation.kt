@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +28,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -63,6 +66,7 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
         Screen.Map
     )
     Box(modifier = Modifier.padding(8.dp)) {
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -77,7 +81,6 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
                     modifier = Modifier
                         .height(48.dp)
                         .width(64.dp)
-                        .background(Color.White.copy(alpha = 0.2f),shape = RoundedCornerShape(8.dp))
                         .border(2.dp, Color.White, RoundedCornerShape(8.dp)),
                     onClick = {
                         navController.navigate(screen.route) {
@@ -90,7 +93,7 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
                     },
                     shape = RoundedCornerShape(8.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = if (isSelected) PrimaryDefault else Color.Transparent
+                        containerColor = if (isSelected) PrimaryDefault else Color.White.copy(alpha = 0.2f)
                     ),
                 ) {
                     Column(
@@ -118,6 +121,14 @@ fun Navigation(navController: NavHostController) {
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) }
     ) { paddingValues ->
+
+        Image(
+            painter = painterResource(id = R.drawable.bg),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+
         NavHost(
             navController = navController,
             startDestination = Screen.Main.route,

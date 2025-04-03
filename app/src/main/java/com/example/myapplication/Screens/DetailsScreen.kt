@@ -2,7 +2,7 @@ package com.example.myapplication.Composable.Screens
 
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,12 +26,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.example.myapplication.R
 import com.example.myapplication.VM.DetailsViewModel
 import com.example.myapplication.VM.WeatherState
 import com.example.myapplication.network.ForecastItem
@@ -56,6 +59,13 @@ fun DetailsScreen(
         color = MaterialTheme.colorScheme.background
     ) {
         Box(contentAlignment = Alignment.Center) {
+            Image(
+                painter = painterResource(id = R.drawable.bg),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+
             when (weatherState) {
                 is WeatherState.Loading -> {
                     CircularProgressIndicator()
@@ -97,8 +107,8 @@ fun WeatherItem(forecast: ForecastItem) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .background(Color.White.copy(alpha = 0.2f), shape = RoundedCornerShape(16.dp))
             .border(BorderStroke(2.dp, Color.White), shape = RoundedCornerShape(16.dp)),
+        colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.1f)),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Row(Modifier.fillMaxSize()) {
