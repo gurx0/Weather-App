@@ -28,7 +28,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -40,9 +39,6 @@ import com.example.myapplication.Composable.Screens.DetailsScreen
 import com.example.myapplication.Composable.Screens.MainScreen
 import com.example.myapplication.Composable.Screens.SearchScreen
 import com.example.myapplication.Screens.MapScreen
-import com.example.myapplication.VM.DetailsViewModel
-import com.example.myapplication.VM.MainViewModel
-import com.example.myapplication.VM.SearchViewModel
 import com.example.myapplication.ui.theme.PrimaryDefault
 import com.example.myapplication.ui.theme.TextDark
 
@@ -129,15 +125,12 @@ fun Navigation(navController: NavHostController) {
             modifier = Modifier.padding(paddingValues)
         ) {
             composable(Screen.Main.route) {
-                val viewModel: MainViewModel = hiltViewModel()
                 MainScreen(navController)
             }
             composable(Screen.Details.route) {
-                val viewModel: DetailsViewModel = hiltViewModel()
                 DetailsScreen(navController)
             }
             composable(Screen.Search.route) {
-                val viewModel: SearchViewModel = hiltViewModel()
                 SearchScreen(navController)
             }
             composable(Screen.Map.route) {
