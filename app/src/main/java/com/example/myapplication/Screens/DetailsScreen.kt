@@ -95,7 +95,7 @@ fun DetailsScreen(
 fun WeatherItem(forecast: ForecastItem) {
     val formattedTime = remember(forecast.dt_txt) {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("LLLL d HH:mm", Locale("ru"))
+        val outputFormat = SimpleDateFormat("d LLLL HH:mm", Locale("ru"))
         try {
             inputFormat.parse(forecast.dt_txt)?.let { outputFormat.format(it) } ?: forecast.dt_txt
         } catch (e: Exception) {
@@ -117,43 +117,43 @@ fun WeatherItem(forecast: ForecastItem) {
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
-                    text = "Время: $formattedTime",
+                    text = formattedTime,
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Start,
                     fontSize = 18.sp,
                     color = Color.White
                 )
                 Text(
-                    text = "Температура: ${forecast.main.temperature}°C",
+                    text = forecast.weather[0].description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Start,
+                    fontSize = 18.sp,
+                    color = Color.White
+                )
+
+                Text(
+                    text = "Температура  |  ${forecast.main.temperature}°C",
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Start,
                     fontSize = 18.sp,
                     color = Color.White
                 )
                 Text(
-                    text = "Погода: ${forecast.weather[0].description}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    textAlign = TextAlign.Start,
-                    fontSize = 18.sp,
-                    color = Color.White
-                )
-                Text(
-                    text = "Влажность: ${forecast.main.humidity}%",
+                    text = "Влажность  |  ${forecast.main.humidity}%",
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Start,
                     fontSize = 18.sp,
                     color = Color.White
                 )
             }
-            val iconUrl = "http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png"
+            val iconUrl = "https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png"
             Log.d("WeatherItem", "Loading image: $iconUrl")
 
             AsyncImage(
                 model = iconUrl,
                 contentDescription = "Weather icon",
                 modifier = Modifier
-                    .size(50.dp)
-                    .padding(top = 8.dp)
+                    .size(120.dp),
             )
         }
     }

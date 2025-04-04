@@ -43,7 +43,6 @@ import com.example.myapplication.Composable.Screens.DetailsScreen
 import com.example.myapplication.Composable.Screens.MainScreen
 import com.example.myapplication.Composable.Screens.SearchScreen
 import com.example.myapplication.Screens.MapScreen
-import com.example.myapplication.ui.theme.PrimaryDefault
 import com.example.myapplication.ui.theme.TextDark
 
 sealed class Screen(val route: String, val icon: ImageVector) {
@@ -93,7 +92,7 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
                     },
                     shape = RoundedCornerShape(8.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = if (isSelected) PrimaryDefault else Color.White.copy(alpha = 0.2f)
+                        containerColor = if (isSelected) Color.White.copy(alpha = 0.5f) else Color.White.copy(alpha = 0.2f)
                     ),
                 ) {
                     Column(
