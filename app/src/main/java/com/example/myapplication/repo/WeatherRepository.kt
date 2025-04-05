@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.repo
 
 import android.util.Log
 import com.example.myapplication.network.WeatherApi
@@ -6,7 +6,10 @@ import com.example.myapplication.network.WeatherForecastResponce
 import com.example.myapplication.network.WeatherResponse
 import javax.inject.Inject
 
+//  ЛОГИКА ПРИЛОЖЕНИЯ, ПОЛУЧЕНИЕ ВСЕЙ ПОГОДЫ И СПИСКА ПОГОД С ПЕРЕРЫВОМ 3 ЧАСА
+
 class WeatherRepository @Inject constructor(private val api: WeatherApi) {
+
     suspend fun getWeather(city: String, apiKey: String): WeatherResponse {
         val data = api.getCurrentWeather(city, apiKey)
         Log.d("JSON", data.toString())

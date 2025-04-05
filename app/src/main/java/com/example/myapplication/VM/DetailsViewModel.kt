@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.WeatherRepository
 import com.example.myapplication.network.WeatherForecastResponce
+import com.example.myapplication.repo.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +16,7 @@ class DetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _weatherState = mutableStateOf<WeatherState>(WeatherState.Loading)
-    val weatherState get() = _weatherState // Теперь корректно
+    val weatherState get() = _weatherState
 
     private val apiKey = "5afd49dd964081b301b9d355f55c5e8b"
 

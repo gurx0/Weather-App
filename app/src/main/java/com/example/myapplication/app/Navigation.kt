@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.app
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -42,6 +42,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.Composable.Screens.DetailsScreen
 import com.example.myapplication.Composable.Screens.MainScreen
 import com.example.myapplication.Composable.Screens.SearchScreen
+import com.example.myapplication.R
 import com.example.myapplication.Screens.MapScreen
 import com.example.myapplication.ui.theme.TextDark
 

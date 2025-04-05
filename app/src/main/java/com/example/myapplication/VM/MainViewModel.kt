@@ -3,7 +3,7 @@ package com.example.myapplication.VM
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.WeatherRepository
+import com.example.myapplication.repo.WeatherRepository
 import com.example.myapplication.network.WeatherResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

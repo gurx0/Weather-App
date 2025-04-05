@@ -4,6 +4,8 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+// апи для взаимодействия с сервером openweather
+
 interface WeatherApi {
     @GET("weather")
     suspend fun getCurrentWeather(

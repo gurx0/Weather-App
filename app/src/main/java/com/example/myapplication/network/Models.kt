@@ -2,6 +2,8 @@ package com.example.myapplication.network
 
 import com.google.gson.annotations.SerializedName
 
+// описание моделей данных
+
 data class WeatherResponse(
     @SerializedName("main") val main: MainInfo,
     @SerializedName("weather") val weather: List<WeatherInfo>,

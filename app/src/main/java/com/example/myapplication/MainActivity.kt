@@ -9,8 +9,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.navigation.compose.rememberNavController
+import com.example.myapplication.app.Navigation
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
+
+// главня точка входа в приложение
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
