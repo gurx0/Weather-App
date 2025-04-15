@@ -43,6 +43,9 @@ android {
 }
 
 dependencies {
+    //noinspection UseTomlInstead
+
+    implementation ("co.yml:ycharts:2.1.0")
     implementation (libs.coil.compose)
     implementation(libs.maps.compose)
     implementation(libs.play.services.maps)
