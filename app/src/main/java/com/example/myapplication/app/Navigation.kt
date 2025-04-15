@@ -18,7 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -41,15 +41,15 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.Composable.Screens.DetailsScreen
 import com.example.myapplication.Composable.Screens.MainScreen
-import com.example.myapplication.Composable.Screens.SearchScreen
 import com.example.myapplication.R
 import com.example.myapplication.Screens.MapScreen
+import com.example.myapplication.Screens.WeatherChartScreen
 import com.example.myapplication.ui.theme.TextDark
 
 sealed class Screen(val route: String, val icon: ImageVector) {
     object Main : Screen("main", Icons.Default.Home)
     object Details : Screen("details", Icons.Default.Info)
-    object Search : Screen("search", Icons.Default.Settings)
+    object Graph : Screen("Graph", Icons.Default.Share)
     object Map : Screen("map", Icons.Default.LocationOn)
 }
 
@@ -62,7 +62,7 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
     val screens = listOf(
         Screen.Main,
         Screen.Details,
-        Screen.Search,
+        Screen.Graph,
         Screen.Map
     )
     Box(modifier = Modifier.padding(8.dp)) {
@@ -140,8 +140,8 @@ fun Navigation(navController: NavHostController) {
             composable(Screen.Details.route) {
                 DetailsScreen(navController)
             }
-            composable(Screen.Search.route) {
-                SearchScreen(navController)
+            composable(Screen.Graph.route) {
+                WeatherChartScreen(navController)
             }
             composable(Screen.Map.route) {
                 MapScreen(navController)
