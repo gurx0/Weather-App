@@ -5,8 +5,14 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.myapplication.VM.MainViewModel
@@ -78,5 +84,8 @@ fun MapScreen(context: Context = LocalContext.current, viewModel: MainViewModel 
         map.overlays.add(weatherOverlay)
 
         map
-    })
+    }, modifier = Modifier
+        .fillMaxWidth()
+        .padding(16.dp)
+        .clip(RoundedCornerShape(4.dp)),)
 }
