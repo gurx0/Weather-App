@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -44,7 +45,6 @@ import com.example.myapplication.Composable.Screens.MainScreen
 import com.example.myapplication.R
 import com.example.myapplication.Screens.MapScreen
 import com.example.myapplication.Screens.WeatherChartScreen
-import com.example.myapplication.ui.theme.TextDark
 
 sealed class Screen(val route: String, val icon: ImageVector) {
     object Main : Screen("main", Icons.Default.Home)
@@ -93,7 +93,7 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
                     },
                     shape = RoundedCornerShape(8.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = if (isSelected) Color.White.copy(alpha = 0.5f) else Color.White.copy(alpha = 0.2f)
+                        containerColor = if (isSelected) Color.White.copy(alpha = 0.3f) else Color.Transparent
                     ),
                 ) {
                     Column(
@@ -107,7 +107,7 @@ fun BottomNavigationBar(navController: NavController = rememberNavController()) 
                             imageVector = screen.icon,
                             contentDescription = screen.route,
                             modifier = Modifier.size(28.dp),
-                            tint = if (isSelected) Color.White else TextDark
+                            tint = Color.White
                         )
                     }
                 }
@@ -144,8 +144,9 @@ fun Navigation(navController: NavHostController) {
                 WeatherChartScreen(navController)
             }
             composable(Screen.Map.route) {
-                MapScreen(navController)
+                MapScreen(context = LocalContext.current)
             }
+
         }
     }
 }

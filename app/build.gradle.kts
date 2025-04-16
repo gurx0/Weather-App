@@ -43,7 +43,8 @@ android {
 }
 
 dependencies {
-    //noinspection UseTomlInstead
+    implementation ("org.osmdroid:osmdroid-android:6.1.16")
+
 
     implementation ("co.yml:ycharts:2.1.0")
     implementation (libs.coil.compose)
