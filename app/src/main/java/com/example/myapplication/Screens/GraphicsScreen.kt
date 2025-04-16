@@ -78,11 +78,12 @@ fun WeatherChartScreen(
     val today = LocalDate.now()
 
     val xAxisData = AxisData.Builder()
-        .axisStepSize(75.dp)
-        .backgroundColor(Color.White)
+        .axisStepSize(73.dp)
+        .backgroundColor(Color.Transparent)
         .steps(pointsData.size - 1)
         .labelData { i -> today.plusDays(i.toLong()).format(formatter) }
-        .axisLineColor(tr)
+        .axisLineColor(Color.White)
+        .axisLabelColor(Color.White)
         .labelAndAxisLinePadding(10.dp)
         .build()
 
@@ -91,6 +92,7 @@ fun WeatherChartScreen(
         .backgroundColor(Color.Transparent)
         .axisLineColor(tr)
         .labelAndAxisLinePadding(10.dp)
+        .axisLabelColor(Color.White)
         .labelData { i ->
             val stepValue = minTemp + (tempRange * i / steps)
             "${stepValue.toInt()}°"
@@ -102,9 +104,9 @@ fun WeatherChartScreen(
             lines = listOf(
                 Line(
                     dataPoints = pointsData,
-                    lineStyle = LineStyle(color = Color.Black, alpha = 0.4f),
-                    intersectionPoint = IntersectionPoint(color = Color.Black),
-                    selectionHighlightPoint = SelectionHighlightPoint(color = Color.Black, alpha = 0.4f),
+                    lineStyle = LineStyle(color = Color.White, alpha = 0.4f),
+                    intersectionPoint = IntersectionPoint(color = Color.White),
+                    selectionHighlightPoint = SelectionHighlightPoint(color = Color.White, alpha = 0.4f),
                     shadowUnderLine = ShadowUnderLine(color = translucentWhite.copy(alpha = 0.2f)),
                     selectionHighlightPopUp = SelectionHighlightPopUp()
                 )
