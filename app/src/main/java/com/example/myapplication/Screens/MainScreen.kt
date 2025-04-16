@@ -78,7 +78,7 @@ fun MainScreen(navController: NavController, viewModel: MainViewModel = hiltView
                 weather?.let {
                     Text("Сегодня, ${LocalDate.now().month} ${LocalDate.now().dayOfMonth}", color = Color.White)
                     Spacer(Modifier.height(8.dp))
-                    Text("${it.main.temperature}°", fontSize = 40.sp, color = Color.White)
+                    Text("${it.main.temperature.toInt()}°", fontSize = 40.sp, color = Color.White)
                     Spacer(Modifier.height(8.dp))
                     Text(it.weather.firstOrNull()?.description ?: "Нет данных", color = Color.White)
                     Spacer(Modifier.height(8.dp))
