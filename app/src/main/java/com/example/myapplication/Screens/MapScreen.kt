@@ -44,12 +44,13 @@ fun MapScreen(context: Context = LocalContext.current, viewModel: MainViewModel 
             )
             setMultiTouchControls(true)
             controller.setZoom(5.0)
-            controller.setCenter(GeoPoint(55.7558, 37.6173)) // Москва
+            controller.setCenter(GeoPoint(55.726798, 37.756055)) // Москва
         }
+
 
         // Добавим маркер
         val marker = Marker(map).apply {
-            position = GeoPoint(55.7558, 37.6173)
+            position = GeoPoint(55.726798, 37.756055)
             setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             title = "Москва"
         }
