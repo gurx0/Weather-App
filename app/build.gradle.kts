@@ -44,6 +44,7 @@ android {
 
 dependencies {
     implementation ("org.osmdroid:osmdroid-android:6.1.16")
+    implementation ("androidx.compose.material:material-icons-extended:1.6.0")
 
 
     implementation ("co.yml:ycharts:2.1.0")
