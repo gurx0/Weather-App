@@ -16,7 +16,11 @@ class WeatherRepository @Inject constructor(private val api: WeatherApi) {
         return data
     }
 
-    suspend fun getWeatherForecast(lat: Double, lon: Double, apiKey: String): Result<WeatherForecastResponce> {
+    suspend fun getWeatherForecast(
+        lat: Double,
+        lon: Double,
+        apiKey: String
+    ): Result<WeatherForecastResponce> {
         return try {
             val response = api.getWeatherForecast(lat, lon, apiKey)
             Log.d("JSON",response.body().toString())

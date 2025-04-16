@@ -20,7 +20,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import co.yml.charts.axis.AxisData
@@ -35,7 +34,6 @@ import co.yml.charts.ui.linechart.model.LineStyle
 import co.yml.charts.ui.linechart.model.SelectionHighlightPoint
 import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
-import com.example.myapplication.VM.GraphicsViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -53,8 +51,7 @@ fun PreviewChartScreen() {
 
 @Composable
 fun WeatherChartScreen(
-    navController: NavController,
-    viewModel: GraphicsViewModel = hiltViewModel()
+    navController: NavController
 ) {
     val steps = 5
     val translucentWhite = Color.White.copy(alpha = 0.5f)
