@@ -6,11 +6,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -28,12 +29,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.myapplication.R
 import com.example.myapplication.VM.DetailsViewModel
@@ -41,12 +40,6 @@ import com.example.myapplication.VM.WeatherState
 import com.example.myapplication.network.ForecastItem
 import java.text.SimpleDateFormat
 import java.util.Locale
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewDetails(){
-    DetailsScreen(rememberNavController())
-}
 
 @Composable
 fun DetailsScreen(
@@ -65,7 +58,7 @@ fun DetailsScreen(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(contentAlignment = Alignment.Center) {
             Image(
                 painter = painterResource(id = R.drawable.bg),
                 contentDescription = null,
@@ -75,45 +68,28 @@ fun DetailsScreen(
 
             when (weatherState) {
                 is WeatherState.Loading -> {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
-                    }
+                    CircularProgressIndicator()
                 }
-
                 is WeatherState.Success -> {
                     val forecast = weatherState.data.list
-                    // Верхняя половина
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxSize(0.5f)
-                            .padding(top = 16.dp)
-                    ) {
-                        LazyRow(
-                            modifier = Modifier.fillMaxWidth(),
-                            contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 8.dp)
-                        ) {
-                            items(forecast) { item ->
-                                WeatherItem(item)
-                            }
+                    LazyColumn {
+                        items(forecast) { item ->
+                            WeatherItem(item)
                         }
                     }
                 }
-
                 is WeatherState.Error -> {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(
-                            text = weatherState.message,
-                            color = Color.Red,
-                            textAlign = TextAlign.Center
-                        )
-                    }
+                    Text(
+                        text = weatherState.message,
+                        color = Color.Red,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
             }
         }
     }
 }
-
 
 @Composable
 fun WeatherItem(forecast: ForecastItem) {
@@ -129,40 +105,47 @@ fun WeatherItem(forecast: ForecastItem) {
 
     Card(
         modifier = Modifier
+            .fillMaxWidth()
             .padding(8.dp)
-            .size(width = 160.dp, height = 220.dp)
             .border(BorderStroke(2.dp, Color.White), shape = RoundedCornerShape(16.dp)),
         colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.1f)),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Column(
-            modifier = Modifier
-                .padding(12.dp),
-            horizontalAlignment = Alignment.Start
-        ) {
-            Text(
-                text = formattedTime,
-                style = MaterialTheme.typography.bodyMedium,
-                fontSize = 14.sp,
-                color = Color.White
-            )
-            Text(
-                text = forecast.weather[0].description,
-                style = MaterialTheme.typography.bodyMedium,
-                fontSize = 14.sp,
-                color = Color.White
-            )
-            Text(
-                text = "Темп: ${forecast.main.temperature}°C",
-                fontSize = 14.sp,
-                color = Color.White
-            )
-            Text(
-                text = "Влажн: ${forecast.main.humidity}%",
-                fontSize = 14.sp,
-                color = Color.White
-            )
+        Row(Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.Start
+            ) {
+                Text(
+                    text = formattedTime,
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Start,
+                    fontSize = 18.sp,
+                    color = Color.White
+                )
+                Text(
+                    text = forecast.weather[0].description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Start,
+                    fontSize = 18.sp,
+                    color = Color.White
+                )
 
+                Text(
+                    text = "Температура  |  ${forecast.main.temperature}°C",
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Start,
+                    fontSize = 18.sp,
+                    color = Color.White
+                )
+                Text(
+                    text = "Влажность  |  ${forecast.main.humidity}%",
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Start,
+                    fontSize = 18.sp,
+                    color = Color.White
+                )
+            }
             val iconUrl = "https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png"
             Log.d("WeatherItem", "Loading image: $iconUrl")
 
@@ -170,11 +153,8 @@ fun WeatherItem(forecast: ForecastItem) {
                 model = iconUrl,
                 contentDescription = "Weather icon",
                 modifier = Modifier
-                    .size(64.dp)
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = 8.dp)
+                    .size(120.dp),
             )
         }
     }
 }
-
