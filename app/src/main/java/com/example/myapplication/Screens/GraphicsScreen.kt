@@ -127,7 +127,7 @@ fun WeatherChartScreen(
         Text(
             text = "Температура по дням",
             style = MaterialTheme.typography.titleMedium,
-            color = translucentWhite,
+            color = Color.White,
             modifier = Modifier.padding(bottom = 16.dp).align(Alignment.CenterHorizontally),
             fontSize = 24.sp,
             textAlign = TextAlign.Center
